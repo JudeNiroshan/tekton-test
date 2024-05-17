@@ -1,0 +1,31 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: simple-pipeline
+spec:
+  params:
+    - name: repo-url
+      type: string
+      description: The URL of the Git repository
+    - name: branch
+      type: string
+      description: The branch to checkout
+      default: "main"
+    - name: message
+      type: string
+      description: The message to print
+  tasks:
+    - name: clone-repo
+      taskRef:
+        name: git-clone
+      params:
+        - name: url
+          value: $(params.repo-url)
+        - name: revision
+          value: $(params.branch)
+    - name: print-message
+      taskRef:
+        name: print-message
+      params:
+        - name: message
+          value: $(params.message)

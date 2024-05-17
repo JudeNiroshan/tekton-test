@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: simple-pipeline-run
+spec:
+  pipelineRef:
+    name: simple-pipeline
+  params:
+    - name: repo-url
+      value: https://github.com/parodos-dev/orchestrator-helm-chart.git
+    - name: branch
+      value: main
+    - name: message
+      value: "Hello, Tekton!"

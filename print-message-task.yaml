@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: print-message
+spec:
+  params:
+    - name: message
+      type: string
+      description: The message to print
+  steps:
+    - name: print
+      image: busybox
+      script: |
+        echo $(params.message)
