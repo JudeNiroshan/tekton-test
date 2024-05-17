@@ -2,6 +2,7 @@ apiVersion: tekton.dev/v1beta1
 kind: Task
 metadata:
   name: print-message
+  namespace: argo-test
 spec:
   params:
     - name: message
